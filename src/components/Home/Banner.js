@@ -2,8 +2,8 @@ import React from 'react';
 
 const Banner = () => {
     return (
-        <div>
-            <h1>SHOPS</h1>
+        <div className='bg-primary h-52 flex items-center justify-center rounded-b-3xl'>
+            <h1 className='text-center text-light ' >SHOPS</h1>
         </div>
     );
 };

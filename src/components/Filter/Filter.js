@@ -2,9 +2,9 @@ import React from 'react';
 
 const Filter = () => {
     return (
-        <div>
+        <aside className='w-1/3'>
             this is filter
-        </div>
+        </aside>
     );
 };
 
