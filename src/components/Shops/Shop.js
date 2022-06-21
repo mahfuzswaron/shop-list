@@ -17,9 +17,9 @@ const clockIcon = <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 inl
 const Shop = ({ shop }) => {
     const { name, category, id, area, opening, closing } = shop;
     return (
-        <div className='bg-[#FAFAFA] px-5 py-3 rounded-tr-3xl relative '>
-            <h3 className='text-3xl uppercase'>{name}</h3>
-            <div className='flex space-x-8'>
+        <div className='bg-[#FAFAFA] px-2 lg:px-5 py-1  lg:py-3 rounded-tr-3xl relative '>
+            <h3 className='lg:text-3xl text-xl uppercase'>{name}</h3>
+            <div className='lg:flex lg:space-x-8 flex-col space-x-0'>
                 <p className='mb-1'>{tagIcon} {category}</p>
                 <p className='mb-1'>{locationIcon} {area}</p>
             </div>
@@ -27,7 +27,7 @@ const Shop = ({ shop }) => {
             <button className='btn btn-primary '>
                 PRODUCTS
             </button>
-            <div className="absolute top-3 right-3">
+            <div className="absolute top-7 lg:top-3  right-3 bg-transparent">
                 <Dropdown className="bg-transparent">
                     <Dropdown.Toggle variant="light" id="dropdown-basic">
                         Edit

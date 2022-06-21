@@ -32,7 +32,7 @@ const Shops = () => {
     ]
 
     return (
-        <div className="w-2/3 grid grid-cols-1 gap-3 pt-3">
+        <div className="lg:w-2/3 w-full grid grid-cols-1 gap-3 pt-3">
             {
                 shops.map(shop => <Shop key={shop.id} shop={shop} />)
             }
