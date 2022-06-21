@@ -14,7 +14,7 @@ const clockIcon = <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 inl
 </svg>
 
 
-const Shop = ({ shop }) => {
+const Shop = ({ shop, setEditShopModalShow }) => {
     const { name, category, id, area, opening, closing } = shop;
     return (
         <div className='bg-[#FAFAFA] sm:px-2 lg:px-5 sm:py-1  lg:py-3 rounded-tr-3xl relative '>
@@ -34,7 +34,8 @@ const Shop = ({ shop }) => {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">Edit</Dropdown.Item>
+                        <Dropdown.Item onClick={() => setEditShopModalShow(true)}
+                        >Edit</Dropdown.Item>
                         <Dropdown.Item href="#/action-2">Delete</Dropdown.Item>
 
                     </Dropdown.Menu>

@@ -5,18 +5,21 @@ import Banner from './Banner';
 import { Button } from 'react-bootstrap';
 import AddShopModal from '../Shops/AddShopModal';
 const Home = () => {
-    const [modalShow, setModalShow] = useState(false);
+    const [addShopModalShow, setAddShopModalShow] = useState(false);
     return (
         <div>
             <Banner />
             <div className='flex justify-end p-5'>
-                <Button variant="primary" onClick={() => setModalShow(true)}>
+                <Button variant="primary" onClick={() => setAddShopModalShow(true)}>
                     Add Shop
                 </Button>
             </div>
             <AddShopModal
-                show={modalShow}
-                onHide={() => setModalShow(false)} />
+                show={addShopModalShow}
+                onHide={() => setAddShopModalShow(false)}
+                setAddShopModalShow={setAddShopModalShow}
+            />
+
             <section className='flex lg:flex-row flex-col justify-between px-5 lg:px-20'>
                 <Filter />
                 <Shops />

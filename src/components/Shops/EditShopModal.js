@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import TimePicker from 'react-bootstrap-time-picker';
 
-const AddShopModal = (props) => {
+const EditShopModal = (props) => {
     const categories = ["Grocery", "Butcher", "Baker", "Chemist", "Stationery", "shop"];
     const areas = ["Thane", "Pune", "Mumbai Suburban", "Nashik", "Nagpur", "Ahmednagar", "Solapur"];
     const [selectedOpeningTime, setSelectedOpeningTime] = useState("00:00");
     const [selectedClosingTime, setSelectedClosingTime] = useState("00:00");
     const [StartingClosingTime, setStartingClosingTime] = useState("00:00");
     const secondToHourString = second => ((second + 3600) / 3600).toString();
-    const { setAddShopModalShow } = props
+    const { setEditShopModalShow } = props
+
     const handleSubmitForm = (event) => {
         event.preventDefault();
         const form = event.currentTarget;
@@ -18,9 +19,9 @@ const AddShopModal = (props) => {
         const area = form.area.value;
         const openingTime = secondToHourString(form.openingTime.value);
         const closingTime = secondToHourString(form.closingTime.value);
-        const newShop = { name, category, area, openingTime, closingTime };
-        console.log(newShop);
-        setAddShopModalShow(false)
+        const updatedShop = { name, category, area, openingTime, closingTime };
+        console.log(updatedShop);
+        setEditShopModalShow(false)
     }
     const handleOpeningTimeChange = (e) => {
         setSelectedOpeningTime(e)
@@ -31,7 +32,9 @@ const AddShopModal = (props) => {
         }
         else {
             setStartingClosingTime(`${timeintoHourString}:00`)
+
         }
+
     }
 
     return (
@@ -43,14 +46,14 @@ const AddShopModal = (props) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Add New Shop
+                    Edit Shop
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form onSubmit={(e) => handleSubmitForm(e)}>
                     <Form.Group className="mb-3" controlId="name">
                         <Form.Label>Shop Name</Form.Label>
-                        <Form.Control required type="text" placeholder="Enter Name" />
+                        <Form.Control type="text" placeholder="Enter Name" />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="category">
@@ -91,4 +94,4 @@ const AddShopModal = (props) => {
     );
 };
 
-export default AddShopModal;
+export default EditShopModal;
