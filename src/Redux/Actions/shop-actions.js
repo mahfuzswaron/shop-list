@@ -6,13 +6,6 @@ export const setShops = (shops) => {
         payload: shops
     }
 }
-export const getShop = () => {
-    return {
-        type: ActionTypes.GET_SHOPS,
-        payload: "all"
-    }
-}
-
 export const addShop = (shop) => {
     return {
         type: ActionTypes.ADD_SHOP,

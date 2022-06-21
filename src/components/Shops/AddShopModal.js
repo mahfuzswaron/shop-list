@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import TimePicker from 'react-bootstrap-time-picker';
-
+import { useDispatch } from 'react-redux';
+import { addShop } from '../../Redux/Actions/shop-actions';
 const AddShopModal = (props) => {
     const categories = ["Grocery", "Butcher", "Baker", "Chemist", "Stationery", "shop"];
     const areas = ["Thane", "Pune", "Mumbai Suburban", "Nashik", "Nagpur", "Ahmednagar", "Solapur"];
@@ -9,7 +10,9 @@ const AddShopModal = (props) => {
     const [selectedClosingTime, setSelectedClosingTime] = useState("00:00");
     const [StartingClosingTime, setStartingClosingTime] = useState("00:00");
     const secondToHourString = second => ((second + 3600) / 3600).toString();
-    const { setAddShopModalShow } = props
+    const { setAddShopModalShow } = props;
+    const dispatch = useDispatch();
+
     const handleSubmitForm = (event) => {
         event.preventDefault();
         const form = event.currentTarget;
@@ -20,6 +23,9 @@ const AddShopModal = (props) => {
         const closingTime = secondToHourString(form.closingTime.value);
         const newShop = { name, category, area, openingTime, closingTime };
         console.log(newShop);
+
+        dispatch(addShop(newShop))
+
         setAddShopModalShow(false)
     }
     const handleOpeningTimeChange = (e) => {
