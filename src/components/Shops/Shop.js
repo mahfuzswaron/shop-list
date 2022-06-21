@@ -17,9 +17,9 @@ const clockIcon = <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 inl
 const Shop = ({ shop }) => {
     const { name, category, id, area, opening, closing } = shop;
     return (
-        <div className='bg-[#FAFAFA] px-2 lg:px-5 py-1  lg:py-3 rounded-tr-3xl relative '>
+        <div className='bg-[#FAFAFA] sm:px-2 lg:px-5 sm:py-1  lg:py-3 rounded-tr-3xl relative '>
             <h3 className='lg:text-3xl text-xl uppercase'>{name}</h3>
-            <div className='lg:flex lg:space-x-8 flex-col space-x-0'>
+            <div className='flex lg:flex-row lg:space-x-8 flex-col space-x-0'>
                 <p className='mb-1'>{tagIcon} {category}</p>
                 <p className='mb-1'>{locationIcon} {area}</p>
             </div>
