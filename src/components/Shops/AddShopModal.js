@@ -15,12 +15,13 @@ const AddShopModal = (props) => {
 
     const handleSubmitForm = (event) => {
         event.preventDefault();
-        const form = event.currentTarget;
+        const form = event.target;
         const name = form.name.value;
         const category = form.category.value;
         const area = form.area.value;
-
-        const newShop = { name, category, area };
+        const openingDate = form.openingDate.value;
+        const closingDate = form.closingDate.value;
+        const newShop = { name, category, area, openingDate, closingDate };
         console.log(newShop);
 
         dispatch(addShop(newShop))
@@ -65,9 +66,10 @@ const AddShopModal = (props) => {
                         </Form.Select>
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="openingTime">
+                    <Form.Group className="mb-3" controlId="openingDate">
                         <Form.Label>Opening Date</Form.Label>
                         <DatePicker
+                            name="openingDate"
                             selected={startDate}
                             onChange={(date) => setStartDate(date)}
                             selectsStart
@@ -76,9 +78,10 @@ const AddShopModal = (props) => {
                         />
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="closingTime">
+                    <Form.Group className="mb-3" controlId="closingDate">
                         <Form.Label>Closing Date</Form.Label>
                         <DatePicker
+                            name="closingDate"
                             selected={endDate}
                             onChange={(date) => setEndDate(date)}
                             selectsEnd

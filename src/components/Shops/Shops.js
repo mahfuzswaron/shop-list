@@ -7,11 +7,13 @@ const Shops = () => {
     const [editShopModalShow, setEditShopModalShow] = useState(false);
     const shops = useSelector((state) => state.allShops.shops)
     const filteredShops = useSelector((state) => state.allShops.filteredShops)
+    // if (!filteredShops || !shops) return <p>loading...</p>
+    const shopsToUSe = filteredShops || shops;
 
     return (
         <div className="lg:w-2/3 w-full grid grid-cols-1 gap-3 pt-3">
             {
-                filteredShops.map(shop => <Shop
+                shopsToUSe.map(shop => <Shop
                     key={shop.id}
                     shop={shop}
                     setEditShopModalShow={setEditShopModalShow}

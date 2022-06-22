@@ -5,24 +5,24 @@ const initialShops = [
         "name": "Ahmed's Grocery",
         "category": "grocery",
         "area": "Ahmednagar",
-        "openingTime": "10:00 AM",
-        "closingTime": "9:00 PM"
+        "openingDate": "06/22/2022",
+        "closingDate": "07/22/2022"
     },
     {
         "id": "shop2",
         "name": "Mahfuz's Store",
         "category": "Stationary shop",
         "area": "Thane",
-        "openingTime": "08:00 AM",
-        "closingTime": "10:00 PM"
+        "openingDate": "06/17/2022",
+        "closingDate": "09/12/2022"
     },
     {
         "id": "shop3",
         "name": "Ibrahim's Shop",
         "category": "chemist",
         "area": "Pune",
-        "openingTime": "09:00 AM",
-        "closingTime": "11:00 PM"
+        "openingDate": "06/12/2022",
+        "closingDate": "06/26/2022"
     }
 ]
 const initialState = {
@@ -54,7 +54,7 @@ const filterShops = (state, query) => {
     let newFilteredShops = [];
     console.log(query)
     for (const shop of state.shops) {
-        const copyShop = { category: shop.category.toLowerCase(), area: shop.area.toLowerCase(), openingTime: shop.openingTime, closingTime: shop.closingTime };
+        const copyShop = { category: shop.category.toLowerCase(), area: shop.area.toLowerCase(), openingDate: shop.openingDate, closingDate: shop.closingDate };
 
         if ((query.category === copyShop.category || query.category === "all") && (query.area === copyShop.area || query.area === "all")) {
             newFilteredShops.push(shop)
