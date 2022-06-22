@@ -60,13 +60,6 @@ const filterShops = (state, query) => {
             newFilteredShops.push(shop)
         }
 
-        // else if (copyShop.openingTime === query.openingTime) {
-        //     newFilteredShops.push(shop)
-        // }
-        // else if (copyShop.closingTime === query.closingTime) {
-        //     newFilteredShops.push(shop)
-        // }
-
         else {
             console.log('not matched ')
         }

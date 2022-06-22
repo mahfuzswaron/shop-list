@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import TimePicker from 'react-bootstrap-time-picker';
+import DatePicker from 'react-datepicker';
 import { useDispatch } from 'react-redux';
 import { addShop } from '../../Redux/Actions/shop-actions';
-import { formatTime, secondToHour } from '../../Shared/sharedFunctions';
+import "react-datepicker/dist/react-datepicker.css";
 const AddShopModal = (props) => {
     const categories = ["Grocery", "Butcher", "Baker", "Chemist", "Stationery shop"];
     const areas = ["Thane", "Pune", "Mumbai Suburban", "Nashik", "Nagpur", "Ahmednagar", "Solapur"];
-    const [selectedOpeningTime, setSelectedOpeningTime] = useState("00:00");
-    const [selectedClosingTime, setSelectedClosingTime] = useState("00:00");
-    const [StartingClosingTime, setStartingClosingTime] = useState("00:00");
+
     const { setAddShopModalShow } = props;
     const dispatch = useDispatch();
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
 
     const handleSubmitForm = (event) => {
         event.preventDefault();
@@ -19,25 +19,13 @@ const AddShopModal = (props) => {
         const name = form.name.value;
         const category = form.category.value;
         const area = form.area.value;
-        const openingTime = formatTime(secondToHour(form.openingTime.value));
-        const closingTime = formatTime(secondToHour(form.closingTime.value));
-        const newShop = { name, category, area, openingTime, closingTime };
+
+        const newShop = { name, category, area };
         console.log(newShop);
 
         dispatch(addShop(newShop))
 
         setAddShopModalShow(false)
-    }
-    const handleOpeningTimeChange = (e) => {
-        setSelectedOpeningTime(e)
-        const timeintoHourString = secondToHour(e + 3600)
-        if (timeintoHourString === '24') {
-            console.log(timeintoHourString)
-            setStartingClosingTime(`00:00`);
-        }
-        else {
-            setStartingClosingTime(`${timeintoHourString}:00`)
-        }
     }
 
     return (
@@ -78,15 +66,27 @@ const AddShopModal = (props) => {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="openingTime">
-                        <Form.Label>Opening Time</Form.Label>
-                        <TimePicker required value={selectedOpeningTime} onChange={handleOpeningTimeChange} start={"00:00"} end="23:00" step={60} />
+                        <Form.Label>Opening Date</Form.Label>
+                        <DatePicker
+                            selected={startDate}
+                            onChange={(date) => setStartDate(date)}
+                            selectsStart
+                            startDate={startDate}
+                            endDate={endDate}
+                        />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="closingTime">
-                        <Form.Label>Closing Time</Form.Label>
-                        <TimePicker required value={selectedClosingTime} onChange={setSelectedClosingTime} start={StartingClosingTime} end="23:00" step={60} />
+                        <Form.Label>Closing Date</Form.Label>
+                        <DatePicker
+                            selected={endDate}
+                            onChange={(date) => setEndDate(date)}
+                            selectsEnd
+                            startDate={startDate}
+                            endDate={endDate}
+                            minDate={startDate}
+                        />
                     </Form.Group>
-
                     <Button className="" variant="primary" type="submit">
                         Submit
                     </Button>
