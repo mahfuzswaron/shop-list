@@ -17,7 +17,7 @@ const clockIcon = <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 inl
 
 
 const Shop = ({ shop, setEditShopModalShow }) => {
-    const { name, category, id, area, opening, closing } = shop;
+    const { name, category, id, area, openingTime, closingTime } = shop;
     const dispatch = useDispatch();
     return (
         <div className='bg-[#FAFAFA] sm:px-2 lg:px-5 sm:py-1  lg:py-3 rounded-tr-3xl relative '>
@@ -26,7 +26,8 @@ const Shop = ({ shop, setEditShopModalShow }) => {
                 <p className='mb-1'>{tagIcon} {category}</p>
                 <p className='mb-1'>{locationIcon} {area}</p>
             </div>
-            <p>{clockIcon} {`${opening} - ${closing}`} </p>
+            {/* <p>{clockIcon} {`${opening} - ${closing}`} </p> */}
+            <p>{clockIcon} {openingTime} - {closingTime} </p>
             <button className='btn btn-primary '>
                 PRODUCTS
             </button>

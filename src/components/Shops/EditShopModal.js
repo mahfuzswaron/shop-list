@@ -3,6 +3,7 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import TimePicker from 'react-bootstrap-time-picker';
 import { useDispatch, useSelector } from 'react-redux';
 import { editShop } from '../../Redux/Actions/shop-actions';
+import { formatTime, secondToHour } from '../../Shared/sharedFunctions';
 
 const EditShopModal = (props) => {
     const categories = ["Grocery", "Butcher", "Baker", "Chemist", "Stationery", "shop"];
@@ -11,8 +12,9 @@ const EditShopModal = (props) => {
     const [selectedOpeningTime, setSelectedOpeningTime] = useState("00:00");
     const [selectedClosingTime, setSelectedClosingTime] = useState("00:00");
     const [StartingClosingTime, setStartingClosingTime] = useState("00:00");
-    const secondToHourString = second => ((second + 3600) / 3600).toString();
+    // const secondToHour = second => (second / 3600);
     const { setEditShopModalShow } = props;
+    // const formatTime = (time) => time > 12 ? `${(time - 12)}:00 PM` : `${time}:00 AM`;
     const dispatch = useDispatch();
     const shop = useSelector((state) => state.selectedShop.state);
     if (!shop) return <p>loading...</p>
@@ -23,8 +25,8 @@ const EditShopModal = (props) => {
         const name = form.name.value;
         const category = form.category.value;
         const area = form.area.value;
-        const openingTime = secondToHourString(form.openingTime.value);
-        const closingTime = secondToHourString(form.closingTime.value);
+        const openingTime = formatTime(secondToHour(form.openingTime.value));
+        const closingTime = formatTime(secondToHour(form.closingTime.value));
         const updatedShop = { id: shop.id, name, category, area, openingTime, closingTime };
         console.log(updatedShop);
         dispatch(editShop(updatedShop))
@@ -32,13 +34,13 @@ const EditShopModal = (props) => {
     }
     const handleOpeningTimeChange = (e) => {
         setSelectedOpeningTime(e)
-        const timeintoHourString = secondToHourString(e)
-        if (timeintoHourString === '24') {
-            console.log(timeintoHourString)
+        const timeintoHour = secondToHour(e + 3600)
+        if (timeintoHour === 24) {
+            console.log(timeintoHour)
             setStartingClosingTime(`00:00`);
         }
         else {
-            setStartingClosingTime(`${timeintoHourString}:00`)
+            setStartingClosingTime(`${timeintoHour}:00`)
 
         }
 
@@ -83,12 +85,12 @@ const EditShopModal = (props) => {
 
                     <Form.Group className="mb-3" controlId="openingTime">
                         <Form.Label>Opening Time</Form.Label>
-                        <TimePicker required value={selectedOpeningTime} onChange={handleOpeningTimeChange} start={"00:00"} end="23:00" step={60} />
+                        <TimePicker value={selectedOpeningTime} onChange={handleOpeningTimeChange} start={"00:00"} end="23:00" step={60} />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="closingTime">
                         <Form.Label>Closing Time</Form.Label>
-                        <TimePicker required value={selectedClosingTime} onChange={setSelectedClosingTime} start={StartingClosingTime} end="23:00" step={60} />
+                        <TimePicker value={selectedClosingTime} onChange={setSelectedClosingTime} start={StartingClosingTime} end="23:00" step={60} />
                     </Form.Group>
 
                     <Button className="" variant="primary" type="submit">
