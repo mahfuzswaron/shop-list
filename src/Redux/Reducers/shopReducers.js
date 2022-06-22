@@ -6,24 +6,24 @@ const initialState = {
             "name": "Ahmed's Grocery",
             "category": "grocery",
             "area": "Ahmedabad",
-            "openingTime": "10:00 am",
-            "closingTime": "9:00 pm"
+            "openingTime": "10:00 AM",
+            "closingTime": "9:00 PM"
         },
         {
             "id": "shop2",
             "name": "Mahfuz's Store",
             "category": "Stationary",
             "area": "Ahmedabad",
-            "openingTime": "10:00 am",
-            "closingTime": "9:00 pm"
+            "openingTime": "10:00 AM",
+            "closingTime": "9:00 PM"
         },
         {
             "id": "shop3",
             "name": "Ibrahim's Shop",
-            "category": "Electronic",
+            "category": "chemist",
             "area": "Ahmedabad",
-            "openingTime": "10:00 am",
-            "closingTime": "9:00 pm"
+            "openingTime": "10:00 AM",
+            "closingTime": "9:00 PM"
         }
     ],
     selectedShop: []

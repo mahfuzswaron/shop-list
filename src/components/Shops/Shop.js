@@ -29,7 +29,7 @@ const Shop = ({ shop, setEditShopModalShow }) => {
             {/* <p>{clockIcon} {`${opening} - ${closing}`} </p> */}
             <p>{clockIcon} {openingTime} - {closingTime} </p>
             <button className='btn btn-primary '>
-                PRODUCTS
+                GALLERY
             </button>
             <div className="absolute top-7 lg:top-3  right-3 bg-transparent">
                 <Dropdown className="bg-transparent">

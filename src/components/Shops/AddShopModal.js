@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { addShop } from '../../Redux/Actions/shop-actions';
 import { formatTime, secondToHour } from '../../Shared/sharedFunctions';
 const AddShopModal = (props) => {
-    const categories = ["Grocery", "Butcher", "Baker", "Chemist", "Stationery", "shop"];
+    const categories = ["Grocery", "Butcher", "Baker", "Chemist", "Stationery shop"];
     const areas = ["Thane", "Pune", "Mumbai Suburban", "Nashik", "Nagpur", "Ahmednagar", "Solapur"];
     const [selectedOpeningTime, setSelectedOpeningTime] = useState("00:00");
     const [selectedClosingTime, setSelectedClosingTime] = useState("00:00");
