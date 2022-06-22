@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
-import { shopReducer } from "./shopReducers";
+import { selectedShopReducer, shopReducer } from "./shopReducers";
 
 export const reducers = combineReducers({
     allShops: shopReducer,
+    selectedShop: selectedShopReducer
 })

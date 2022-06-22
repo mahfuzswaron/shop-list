@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import TimePicker from 'react-bootstrap-time-picker';
+import { useDispatch, useSelector } from 'react-redux';
+import { editShop } from '../../Redux/Actions/shop-actions';
 
 const EditShopModal = (props) => {
     const categories = ["Grocery", "Butcher", "Baker", "Chemist", "Stationery", "shop"];
     const areas = ["Thane", "Pune", "Mumbai Suburban", "Nashik", "Nagpur", "Ahmednagar", "Solapur"];
+
     const [selectedOpeningTime, setSelectedOpeningTime] = useState("00:00");
     const [selectedClosingTime, setSelectedClosingTime] = useState("00:00");
     const [StartingClosingTime, setStartingClosingTime] = useState("00:00");
     const secondToHourString = second => ((second + 3600) / 3600).toString();
-    const { setEditShopModalShow } = props
-
+    const { setEditShopModalShow } = props;
+    const dispatch = useDispatch();
+    const shop = useSelector((state) => state.selectedShop.state);
+    if (!shop) return <p>loading...</p>
+    const { name, category, area, openingTime, closingTime } = shop;
     const handleSubmitForm = (event) => {
         event.preventDefault();
         const form = event.currentTarget;
@@ -19,8 +25,9 @@ const EditShopModal = (props) => {
         const area = form.area.value;
         const openingTime = secondToHourString(form.openingTime.value);
         const closingTime = secondToHourString(form.closingTime.value);
-        const updatedShop = { name, category, area, openingTime, closingTime };
+        const updatedShop = { id: shop.id, name, category, area, openingTime, closingTime };
         console.log(updatedShop);
+        dispatch(editShop(updatedShop))
         setEditShopModalShow(false)
     }
     const handleOpeningTimeChange = (e) => {
@@ -53,12 +60,12 @@ const EditShopModal = (props) => {
                 <Form onSubmit={(e) => handleSubmitForm(e)}>
                     <Form.Group className="mb-3" controlId="name">
                         <Form.Label>Shop Name</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Name" />
+                        <Form.Control defaultValue={name} type="text" placeholder="Enter Name" />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="category">
                         <Form.Label>Catagory</Form.Label>
-                        <Form.Select required aria-label="Select Shop Category">
+                        <Form.Select defaultValue={category.toLowerCase()} aria-label="Select Shop Category">
                             {
                                 categories.map(c => <option key={c} value={c.toLowerCase()} >{c}</option>)
                             }
@@ -67,7 +74,7 @@ const EditShopModal = (props) => {
 
                     <Form.Group className="mb-3" controlId="area">
                         <Form.Label>Shop Location</Form.Label>
-                        <Form.Select required aria-label="Shop Location">
+                        <Form.Select defaultValue={area.toLowerCase()} aria-label="Shop Location">
                             {
                                 areas.map(a => <option key={a} value={a.toLowerCase()} >{a}</option>)
                             }

@@ -25,3 +25,6 @@ export const deleteShop = (shop) => {
         payload: shop
     }
 }
+export const selectShop = (shop) => {
+    return { type: "SELECT_SHOP", payload: shop }
+}

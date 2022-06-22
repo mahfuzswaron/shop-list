@@ -25,7 +25,8 @@ const initialState = {
             "opening": "10:00 am",
             "closing": "9:00 pm"
         }
-    ]
+    ],
+    selectedShop: []
 }
 
 const addShop = (state, shop) => {
@@ -35,7 +36,20 @@ const addShop = (state, shop) => {
     const newShop = { id: newId, ...shop };
     const preShops = state.shops;
     const newShops = [...preShops, newShop]
-    return { shops: newShops }
+    return { shops: newShops, selectedShop: state.selectedShop }
+}
+const editShop = (state, shop) => {
+    const shopId = shop.id;
+    // console.log(shop)
+    const mathchedShop = state.shops.find(s => s.id === shopId);
+    console.log("matched", mathchedShop)
+    const updatedShops = [...state.shops];
+    updatedShops.pop(mathchedShop);
+    console.log(updatedShops);
+    updatedShops.unshift(shop);
+    return { shops: updatedShops }
+    // return state
+
 }
 
 export const shopReducer = (state = initialState, action) => {
@@ -45,7 +59,11 @@ export const shopReducer = (state = initialState, action) => {
             return state;
         case ActionTypes.ADD_SHOP:
             return addShop(state, payload);
+        case ActionTypes.EDIT_SHOP:
+            return editShop(state, payload)
         default:
             return state;
     }
 }
+
+export const selectedShopReducer = (state = {}, { type, payload }) => ({ state: payload })

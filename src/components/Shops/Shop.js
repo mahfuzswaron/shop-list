@@ -1,5 +1,7 @@
 import { Dropdown } from 'react-bootstrap';
 import React from 'react';
+import { useDispatch } from "react-redux";
+import { selectShop } from '../../Redux/Actions/shop-actions';
 
 
 const locationIcon = <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 inline-block stroke-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -16,6 +18,7 @@ const clockIcon = <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 inl
 
 const Shop = ({ shop, setEditShopModalShow }) => {
     const { name, category, id, area, opening, closing } = shop;
+    const dispatch = useDispatch();
     return (
         <div className='bg-[#FAFAFA] sm:px-2 lg:px-5 sm:py-1  lg:py-3 rounded-tr-3xl relative '>
             <h3 className='lg:text-3xl text-xl uppercase'>{name}</h3>
@@ -34,7 +37,10 @@ const Shop = ({ shop, setEditShopModalShow }) => {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        <Dropdown.Item onClick={() => setEditShopModalShow(true)}
+                        <Dropdown.Item onClick={() => {
+                            setEditShopModalShow(true)
+                            dispatch(selectShop(shop))
+                        }}
                         >Edit</Dropdown.Item>
                         <Dropdown.Item href="#/action-2">Delete</Dropdown.Item>
 
