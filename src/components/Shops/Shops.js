@@ -11,7 +11,7 @@ const Shops = () => {
     return (
         <div className="lg:w-2/3 w-full grid grid-cols-1 gap-3 pt-3">
             {
-                filteredShops?.map(shop => <Shop
+                filteredShops.map(shop => <Shop
                     key={shop.id}
                     shop={shop}
                     setEditShopModalShow={setEditShopModalShow}

@@ -12,17 +12,17 @@ const initialShops = [
         "id": "shop2",
         "name": "Mahfuz's Store",
         "category": "Stationary shop",
-        "area": "Ahmednagar",
-        "openingTime": "10:00 AM",
-        "closingTime": "9:00 PM"
+        "area": "Thane",
+        "openingTime": "08:00 AM",
+        "closingTime": "10:00 PM"
     },
     {
         "id": "shop3",
         "name": "Ibrahim's Shop",
         "category": "chemist",
-        "area": "Ahmednagar",
-        "openingTime": "10:00 AM",
-        "closingTime": "9:00 PM"
+        "area": "Pune",
+        "openingTime": "09:00 AM",
+        "closingTime": "11:00 PM"
     }
 ]
 const initialState = {
@@ -60,12 +60,12 @@ const filterShops = (state, query) => {
             newFilteredShops.push(shop)
         }
 
-        else if (copyShop.openingTime === query.openingTime) {
-            newFilteredShops.push(shop)
-        }
-        else if (copyShop.closingTime === query.closingTime) {
-            newFilteredShops.push(shop)
-        }
+        // else if (copyShop.openingTime === query.openingTime) {
+        //     newFilteredShops.push(shop)
+        // }
+        // else if (copyShop.closingTime === query.closingTime) {
+        //     newFilteredShops.push(shop)
+        // }
 
         else {
             console.log('not matched ')
