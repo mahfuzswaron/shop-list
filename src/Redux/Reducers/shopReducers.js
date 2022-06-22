@@ -39,17 +39,13 @@ const addShop = (state, shop) => {
     return { shops: newShops, selectedShop: state.selectedShop }
 }
 const editShop = (state, shop) => {
-    const shopId = shop.id;
-    // console.log(shop)
-    const mathchedShop = state.shops.find(s => s.id === shopId);
-    console.log("matched", mathchedShop)
-    const updatedShops = [...state.shops];
-    updatedShops.pop(mathchedShop);
-    console.log(updatedShops);
+    const updatedShops = state.shops.filter(s => s.id !== shop.id);
     updatedShops.unshift(shop);
     return { shops: updatedShops }
-    // return state
-
+}
+const deleteShop = (state, shop) => {
+    const updatedShops = state.shops.filter(s => s.id !== shop.id);
+    return { shops: updatedShops }
 }
 
 export const shopReducer = (state = initialState, action) => {
@@ -60,7 +56,9 @@ export const shopReducer = (state = initialState, action) => {
         case ActionTypes.ADD_SHOP:
             return addShop(state, payload);
         case ActionTypes.EDIT_SHOP:
-            return editShop(state, payload)
+            return editShop(state, payload);
+        case ActionTypes.DELETE_SHOP:
+            return deleteShop(state, payload)
         default:
             return state;
     }
