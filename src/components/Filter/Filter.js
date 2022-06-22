@@ -8,18 +8,16 @@ import "react-datepicker/dist/react-datepicker.css";
 const Filter = () => {
     const filterCategories = ["ALL", ...categories];
     const filterAreas = ["ALL", ...areas];
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
     const dispatch = useDispatch();
 
     const handleOnChange = e => {
-        const form = e.target;
+        const form = e.target.form;
         const category = form.category.value;
         const area = form.area.value;
-        const openingDate = form.openingDate.value;
-        const closingDate = form.closingDate.value;
-        const query = { category, area, openingDate, closingDate };
+        const availablity = form.availablity.value || "all";
+        const query = { category, area, availablity };
         dispatch(filterShops(query))
+        console.log(query);
     }
 
     return (
@@ -44,28 +42,28 @@ const Filter = () => {
                     </Form.Select>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="openingDate">
-                    <Form.Label>Opening Date</Form.Label>
-                    <DatePicker
-                        name="openingDate"
-                        selected={startDate}
-                        onChange={(date) => setStartDate(date)}
-                        selectsStart
-                        startDate={startDate}
-                        endDate={endDate}
+                <Form.Group className="mb-3" controlId="availablity">
+                    <Form.Label>availablity</Form.Label>
+                    <Form.Check
+                        label="All"
+                        value="all"
+                        type="radio"
+                        name="availablity"
+                        id={`radio-1`}
                     />
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="closingDate">
-                    <Form.Label>Closing Date</Form.Label>
-                    <DatePicker
-                        name="closingDate"
-                        selected={endDate}
-                        onChange={(date) => setEndDate(date)}
-                        selectsEnd
-                        startDate={startDate}
-                        endDate={endDate}
-                        minDate={startDate}
+                    <Form.Check
+                        label="open"
+                        value="open"
+                        type="radio"
+                        name="availablity"
+                        id={`radio-2`}
+                    />
+                    <Form.Check
+                        label="closed"
+                        value="closed"
+                        type="radio"
+                        name="availablity"
+                        id={`radio-3`}
                     />
                 </Form.Group>
             </Form>

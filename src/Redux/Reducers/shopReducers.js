@@ -24,7 +24,8 @@ const initialShops = [
         "openingDate": "06/12/2022",
         "closingDate": "06/26/2022"
     }
-]
+];
+
 const initialState = {
     shops: [...initialShops],
     selectedShop: [],
@@ -49,15 +50,28 @@ const deleteShop = (state, shop) => {
     const updatedShops = state.shops.filter(s => s.id !== shop.id);
     return { shops: updatedShops }
 }
-const filterShops = (state, query) => {
 
+const filterShops = (state, query) => {
+    const shopAvailablity = (od, cd) => {
+        if ((Date.parse(od) < new Date()) && (new Date() < Date.parse(cd))) {
+            return 'open'
+        }
+        else {
+            return "closed"
+        }
+    };
     let newFilteredShops = [];
     console.log(query)
     for (const shop of state.shops) {
         const copyShop = { category: shop.category.toLowerCase(), area: shop.area.toLowerCase(), openingDate: shop.openingDate, closingDate: shop.closingDate };
 
         if ((query.category === copyShop.category || query.category === "all") && (query.area === copyShop.area || query.area === "all")) {
-            newFilteredShops.push(shop)
+            if (query.availablity === "all") {
+                newFilteredShops.push(shop)
+            }
+            else if (query.availablity === shopAvailablity(shop.openingDate, shop.closingDate)) {
+                newFilteredShops.push(shop)
+            }
         }
 
         else {

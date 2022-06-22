@@ -20,7 +20,7 @@ const Shop = ({ shop, setEditShopModalShow }) => {
     const { name, category, id, area, openingDate, closingDate } = shop;
     const dispatch = useDispatch();
 
-    const isOpen = () => Date.parse(openingDate) < new Date() < Date.parse(closingDate);
+    const isOpen = () => (Date.parse(shop.openingDate) < new Date()) && (new Date() < Date.parse(shop.closingDate))
 
     return (
         <div className='bg-[#FAFAFA] sm:px-2 lg:px-5 sm:py-1  lg:py-3 rounded-tr-3xl relative '>
