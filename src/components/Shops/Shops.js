@@ -7,7 +7,6 @@ const Shops = () => {
     const [editShopModalShow, setEditShopModalShow] = useState(false);
     const shops = useSelector((state) => state.allShops.shops)
     const filteredShops = useSelector((state) => state.allShops.filteredShops)
-    // if (!filteredShops || !shops) return <p>loading...</p>
     const shopsToUSe = filteredShops || shops;
 
     return (

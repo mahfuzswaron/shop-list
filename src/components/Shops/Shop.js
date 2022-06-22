@@ -19,6 +19,9 @@ const clockIcon = <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 inl
 const Shop = ({ shop, setEditShopModalShow }) => {
     const { name, category, id, area, openingDate, closingDate } = shop;
     const dispatch = useDispatch();
+
+    const isOpen = () => Date.parse(openingDate) < new Date() < Date.parse(closingDate);
+
     return (
         <div className='bg-[#FAFAFA] sm:px-2 lg:px-5 sm:py-1  lg:py-3 rounded-tr-3xl relative '>
             <h3 className='lg:text-3xl text-xl uppercase'>{name}</h3>
@@ -27,7 +30,7 @@ const Shop = ({ shop, setEditShopModalShow }) => {
                 <p className='mb-1'>{locationIcon} {area}</p>
             </div>
             {/* <p>{clockIcon} {`${opening} - ${closing}`} </p> */}
-            <p>{clockIcon} {openingDate} - {closingDate} </p>
+            <p>{clockIcon} {openingDate} - {closingDate} ({isOpen() ? `open` : `closed`}) </p>
             <button className='btn btn-primary '>
                 GALLERY
             </button>

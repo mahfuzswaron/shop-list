@@ -3,7 +3,7 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import { useDispatch, useSelector } from 'react-redux';
 import { editShop } from '../../Redux/Actions/shop-actions';
-
+import "react-datepicker/dist/react-datepicker.css";
 const EditShopModal = (props) => {
     const categories = ["Grocery", "Butcher", "Baker", "Chemist", "Stationery shop"];
     const areas = ["Thane", "Pune", "Mumbai Suburban", "Nashik", "Nagpur", "Ahmednagar", "Solapur"];

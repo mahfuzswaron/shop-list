@@ -1,39 +1,24 @@
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
-import TimePicker from 'react-bootstrap-time-picker';
+import DatePicker from 'react-datepicker';
 import { useDispatch } from 'react-redux';
 import { filterShops } from '../../Redux/Actions/shop-actions';
 import { areas, categories } from '../../Shared/data';
-import { formatTime, secondToHour } from '../../Shared/sharedFunctions';
-
+import "react-datepicker/dist/react-datepicker.css";
 const Filter = () => {
     const filterCategories = ["ALL", ...categories];
     const filterAreas = ["ALL", ...areas];
-    const [selectedOpeningTime, setSelectedOpeningTime] = useState("00:00");
-    const [selectedClosingTime, setSelectedClosingTime] = useState("00:00");
-    const [StartingClosingTime, setStartingClosingTime] = useState("23:00");
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
     const dispatch = useDispatch();
 
-    const handleOpeningTimeChange = (e) => {
-        setSelectedOpeningTime(e)
-        const timeintoHourString = secondToHour(e + 3600);
-        if (timeintoHourString === '24') {
-            console.log(timeintoHourString)
-            setStartingClosingTime(`00:00`);
-        }
-        else {
-            setStartingClosingTime(`${timeintoHourString}:00`)
-
-        }
-    }
-
     const handleOnChange = e => {
-        const form = e.currentTarget;
+        const form = e.target;
         const category = form.category.value;
         const area = form.area.value;
-        const openingTime = formatTime(secondToHour(form.openingTime.value));
-        const closingTime = formatTime(secondToHour(form.closingTime.value));
-        const query = { category, area, openingTime, closingTime };
+        const openingDate = form.openingDate.value;
+        const closingDate = form.closingDate.value;
+        const query = { category, area, openingDate, closingDate };
         dispatch(filterShops(query))
     }
 
@@ -59,14 +44,29 @@ const Filter = () => {
                     </Form.Select>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="openingTime">
-                    <Form.Label>Opening Time</Form.Label>
-                    <TimePicker value={selectedOpeningTime} onChange={handleOpeningTimeChange} start={"00:00"} end="23:00" step={60} />
+                <Form.Group className="mb-3" controlId="openingDate">
+                    <Form.Label>Opening Date</Form.Label>
+                    <DatePicker
+                        name="openingDate"
+                        selected={startDate}
+                        onChange={(date) => setStartDate(date)}
+                        selectsStart
+                        startDate={startDate}
+                        endDate={endDate}
+                    />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="closingTime">
-                    <Form.Label>Closing Time</Form.Label>
-                    <TimePicker value={selectedClosingTime} onChange={setSelectedClosingTime} start={StartingClosingTime} end="23:00" step={60} />
+                <Form.Group className="mb-3" controlId="closingDate">
+                    <Form.Label>Closing Date</Form.Label>
+                    <DatePicker
+                        name="closingDate"
+                        selected={endDate}
+                        onChange={(date) => setEndDate(date)}
+                        selectsEnd
+                        startDate={startDate}
+                        endDate={endDate}
+                        minDate={startDate}
+                    />
                 </Form.Group>
             </Form>
         </aside>
