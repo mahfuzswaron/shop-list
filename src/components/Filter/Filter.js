@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import TimePicker from 'react-bootstrap-time-picker';
+import { useDispatch } from 'react-redux';
+import { filterShops } from '../../Redux/Actions/shop-actions';
 import { areas, categories } from '../../Shared/data';
+import { formatTime, secondToHour } from '../../Shared/sharedFunctions';
 
 const Filter = () => {
     const filterCategories = ["ALL", ...categories];
     const filterAreas = ["ALL", ...areas];
     const [selectedOpeningTime, setSelectedOpeningTime] = useState("00:00");
     const [selectedClosingTime, setSelectedClosingTime] = useState("00:00");
-    const [StartingClosingTime, setStartingClosingTime] = useState("00:00");
-    const secondToHourString = second => ((second + 3600) / 3600).toString();
+    const [StartingClosingTime, setStartingClosingTime] = useState("23:00");
+    const dispatch = useDispatch();
 
     const handleOpeningTimeChange = (e) => {
         setSelectedOpeningTime(e)
-        const timeintoHourString = secondToHourString(e)
+        const timeintoHourString = secondToHour(e + 3600);
         if (timeintoHourString === '24') {
             console.log(timeintoHourString)
             setStartingClosingTime(`00:00`);
@@ -22,12 +25,22 @@ const Filter = () => {
             setStartingClosingTime(`${timeintoHourString}:00`)
 
         }
-
     }
+
+    const handleOnChange = e => {
+        const form = e.currentTarget;
+        const category = form.category.value;
+        const area = form.area.value;
+        const openingTime = formatTime(secondToHour(form.openingTime.value));
+        const closingTime = formatTime(secondToHour(form.closingTime.value));
+        const query = { category, area, openingTime, closingTime };
+        dispatch(filterShops(query))
+    }
+
     return (
         <aside className='lg:w-1/3 w-full bg-blue-100 bg-opacity-25 mt-3 mr-5 p-3 rounded-lg'>
             <h3>Filter</h3>
-            <Form>
+            <Form onChange={handleOnChange}>
                 <Form.Group className="mb-3" controlId="category">
                     <Form.Label>Category</Form.Label>
                     <Form.Select aria-label="Select Shop Category">

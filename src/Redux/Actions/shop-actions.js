@@ -28,3 +28,9 @@ export const deleteShop = (shop) => {
 export const selectShop = (shop) => {
     return { type: "SELECT_SHOP", payload: shop }
 }
+export const filterShops = (query) => {
+    return {
+        type: ActionTypes.FILTER_SHOPS,
+        payload: query
+    }
+}

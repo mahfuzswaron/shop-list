@@ -1,32 +1,34 @@
 import { ActionTypes } from "../Constants/action-types";
+const initialShops = [
+    {
+        "id": "shop1",
+        "name": "Ahmed's Grocery",
+        "category": "grocery",
+        "area": "Ahmednagar",
+        "openingTime": "10:00 AM",
+        "closingTime": "9:00 PM"
+    },
+    {
+        "id": "shop2",
+        "name": "Mahfuz's Store",
+        "category": "Stationary shop",
+        "area": "Ahmednagar",
+        "openingTime": "10:00 AM",
+        "closingTime": "9:00 PM"
+    },
+    {
+        "id": "shop3",
+        "name": "Ibrahim's Shop",
+        "category": "chemist",
+        "area": "Ahmednagar",
+        "openingTime": "10:00 AM",
+        "closingTime": "9:00 PM"
+    }
+]
 const initialState = {
-    shops: [
-        {
-            "id": "shop1",
-            "name": "Ahmed's Grocery",
-            "category": "grocery",
-            "area": "Ahmedabad",
-            "openingTime": "10:00 AM",
-            "closingTime": "9:00 PM"
-        },
-        {
-            "id": "shop2",
-            "name": "Mahfuz's Store",
-            "category": "Stationary",
-            "area": "Ahmedabad",
-            "openingTime": "10:00 AM",
-            "closingTime": "9:00 PM"
-        },
-        {
-            "id": "shop3",
-            "name": "Ibrahim's Shop",
-            "category": "chemist",
-            "area": "Ahmedabad",
-            "openingTime": "10:00 AM",
-            "closingTime": "9:00 PM"
-        }
-    ],
-    selectedShop: []
+    shops: [...initialShops],
+    selectedShop: [],
+    filteredShops: [...initialShops]
 }
 
 const addShop = (state, shop) => {
@@ -47,6 +49,33 @@ const deleteShop = (state, shop) => {
     const updatedShops = state.shops.filter(s => s.id !== shop.id);
     return { shops: updatedShops }
 }
+const filterShops = (state, query) => {
+
+    let newFilteredShops = [];
+    console.log(query)
+    for (const shop of state.shops) {
+        const copyShop = { category: shop.category.toLowerCase(), area: shop.area.toLowerCase(), openingTime: shop.openingTime, closingTime: shop.closingTime };
+
+        if ((query.category === copyShop.category || query.category === "all") && (query.area === copyShop.area || query.area === "all")) {
+            newFilteredShops.push(shop)
+        }
+
+        else if (copyShop.openingTime === query.openingTime) {
+            newFilteredShops.push(shop)
+        }
+        else if (copyShop.closingTime === query.closingTime) {
+            newFilteredShops.push(shop)
+        }
+
+        else {
+            console.log('not matched ')
+        }
+
+
+    }
+
+    return { ...state, filteredShops: newFilteredShops }
+}
 
 export const shopReducer = (state = initialState, action) => {
     const { type, payload } = action;
@@ -58,7 +87,9 @@ export const shopReducer = (state = initialState, action) => {
         case ActionTypes.EDIT_SHOP:
             return editShop(state, payload);
         case ActionTypes.DELETE_SHOP:
-            return deleteShop(state, payload)
+            return deleteShop(state, payload);
+        case ActionTypes.FILTER_SHOPS:
+            return filterShops(state, payload);
         default:
             return state;
     }

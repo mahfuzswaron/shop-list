@@ -6,11 +6,12 @@ import Shop from './Shop';
 const Shops = () => {
     const [editShopModalShow, setEditShopModalShow] = useState(false);
     const shops = useSelector((state) => state.allShops.shops)
+    const filteredShops = useSelector((state) => state.allShops.filteredShops)
 
     return (
         <div className="lg:w-2/3 w-full grid grid-cols-1 gap-3 pt-3">
             {
-                shops.map(shop => <Shop
+                filteredShops?.map(shop => <Shop
                     key={shop.id}
                     shop={shop}
                     setEditShopModalShow={setEditShopModalShow}
