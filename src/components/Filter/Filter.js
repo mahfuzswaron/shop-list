@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import TimePicker from 'react-bootstrap-time-picker';
+import { areas, categories } from '../../Shared/data';
 
 const Filter = () => {
-    const categories = ["Grocery", "Butcher", "Baker", "Chemist", "Stationery", "shop"];
-    const areas = ["Thane", "Pune", "Mumbai Suburban", "Nashik", "Nagpur", "Ahmednagar", "Solapur"];
+    const filterCategories = ["ALL", ...categories];
+    const filterAreas = ["ALL", ...areas];
     const [selectedOpeningTime, setSelectedOpeningTime] = useState("00:00");
     const [selectedClosingTime, setSelectedClosingTime] = useState("00:00");
     const [StartingClosingTime, setStartingClosingTime] = useState("00:00");
@@ -31,7 +32,7 @@ const Filter = () => {
                     <Form.Label>Category</Form.Label>
                     <Form.Select aria-label="Select Shop Category">
                         {
-                            categories.map(c => <option key={c} value={c.toLowerCase()} >{c}</option>)
+                            filterCategories.map(c => <option key={c} value={c.toLowerCase()} >{c}</option>)
                         }
                     </Form.Select>
                 </Form.Group>
@@ -40,7 +41,7 @@ const Filter = () => {
                     <Form.Label>Shop Location</Form.Label>
                     <Form.Select aria-label="Shop Location">
                         {
-                            areas.map(a => <option key={a} value={a.toLowerCase()} >{a}</option>)
+                            filterAreas.map(a => <option key={a} value={a.toLowerCase()} >{a}</option>)
                         }
                     </Form.Select>
                 </Form.Group>
