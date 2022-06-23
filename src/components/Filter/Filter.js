@@ -43,7 +43,7 @@ const Filter = () => {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="availablity">
-                    <Form.Label>availablity</Form.Label>
+                    <Form.Label>Availablity</Form.Label>
                     <Form.Check
                         label="All"
                         value="all"
