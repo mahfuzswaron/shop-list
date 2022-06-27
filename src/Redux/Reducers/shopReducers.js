@@ -2,7 +2,7 @@ import { ActionTypes } from "../Constants/action-types";
 const initialShops = [
     {
         "id": "shop1",
-        "name": "Ahmed's Grocery",
+        "name": "Mudi Bazar",
         "category": "grocery",
         "area": "Ahmednagar",
         "openingDate": "06/22/2022",
@@ -10,20 +10,36 @@ const initialShops = [
     },
     {
         "id": "shop2",
-        "name": "Mahfuz's Store",
-        "category": "Stationary shop",
+        "name": "college store",
+        "category": "Stationery shop",
         "area": "Thane",
         "openingDate": "06/17/2022",
         "closingDate": "09/12/2022"
     },
     {
         "id": "shop3",
-        "name": "Ibrahim's Shop",
-        "category": "chemist",
+        "name": "Mangsho bitan",
+        "category": "Butcher",
         "area": "Pune",
         "openingDate": "06/12/2022",
         "closingDate": "06/26/2022"
-    }
+    },
+    {
+        "id": "shop4",
+        "name": "Vista pharmacy",
+        "category": "Chemist",
+        "area": "Mumbai Suburban",
+        "openingDate": "06/12/2022",
+        "closingDate": "06/26/2022"
+    },
+    {
+        "id": "shop5",
+        "name": "Sweet Salvation",
+        "category": "Baker",
+        "area": "Nashik",
+        "openingDate": "06/12/2022",
+        "closingDate": "06/26/2022"
+    },
 ];
 
 const initialState = {
