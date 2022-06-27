@@ -44,7 +44,6 @@ const initialShops = [
 
 const initialState = {
     shops: [...initialShops],
-    selectedShop: [],
     filteredShops: [...initialShops]
 }
 
@@ -55,7 +54,7 @@ const addShop = (state, shop) => {
     const newShop = { id: newId, ...shop };
     const preShops = state.shops;
     const newShops = [...preShops, newShop]
-    return { shops: newShops, selectedShop: state.selectedShop }
+    return { shops: newShops }
 }
 const editShop = (state, shop) => {
     const updatedShops = state.shops.filter(s => s.id !== shop.id);
