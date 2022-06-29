@@ -12,7 +12,7 @@ const EditShopModal = (props) => {
     const { setEditShopModalShow } = props;
     const dispatch = useDispatch();
     const shop = useSelector((state) => state.selectedShop.state);
-    if (!shop) return <p>loading...</p>
+    if (!shop) return
     const { name, category, area, openingDate, closingDate } = shop;
 
     const handleSubmitForm = (event) => {

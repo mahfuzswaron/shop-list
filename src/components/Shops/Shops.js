@@ -9,24 +9,27 @@ const Shops = () => {
     const filteredShops = useSelector((state) => state.allShops.filteredShops)
     let shopsToUSe = filteredShops;
     // if (!filteredShops.length) shopsToUSe = shops;
-    if (!filteredShops) return <p> loading...</p>
-
-    return (
-        <div className="lg:w-2/3 w-full grid grid-cols-1 gap-3 pt-3">
-            {
-                shopsToUSe.map(shop => <Shop
-                    key={shop.id}
-                    shop={shop}
+    if (!filteredShops) {
+        return <p>Loading...</p>
+    }
+    else {
+        return (
+            <div className="lg:w-2/3 w-full grid grid-cols-1 gap-3 pt-3">
+                {
+                    shopsToUSe.map(shop => <Shop
+                        key={shop.id}
+                        shop={shop}
+                        setEditShopModalShow={setEditShopModalShow}
+                    />)
+                }
+                <EditShopModal
+                    show={editShopModalShow}
+                    onHide={() => setEditShopModalShow(false)}
                     setEditShopModalShow={setEditShopModalShow}
-                />)
-            }
-            <EditShopModal
-                show={editShopModalShow}
-                onHide={() => setEditShopModalShow(false)}
-                setEditShopModalShow={setEditShopModalShow}
-            />
-        </div>
-    );
+                />
+            </div>
+        );
+    }
 };
 
 export default Shops;
