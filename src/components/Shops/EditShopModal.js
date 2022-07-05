@@ -7,13 +7,14 @@ import "react-datepicker/dist/react-datepicker.css";
 const EditShopModal = (props) => {
     const categories = ["Grocery", "Butcher", "Baker", "Chemist", "Stationery shop"];
     const areas = ["Thane", "Pune", "Mumbai Suburban", "Nashik", "Nagpur", "Ahmednagar", "Solapur"];
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
+    const shop = useSelector((state) => state.selectedShop.state);
+    console.log(shop)
+    const [startDate, setStartDate] = useState(new Date(shop?.openingDate));
+    const [endDate, setEndDate] = useState(new Date(shop?.closingDate));
     const { setEditShopModalShow } = props;
     const dispatch = useDispatch();
-    const shop = useSelector((state) => state.selectedShop.state);
     if (!shop) return
-    const { name, category, area, openingDate, closingDate } = shop;
+    const { name, category, area } = shop;
 
     const handleSubmitForm = (event) => {
         event.preventDefault();
