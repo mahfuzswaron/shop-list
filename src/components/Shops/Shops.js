@@ -10,8 +10,9 @@ const Shops = () => {
     let shopsToUSe = filteredShops;
     // if (!filteredShops.length) shopsToUSe = shops;
     if (!filteredShops) {
-        return <p>Loading...</p>
+        shopsToUSe = shops
     }
+    if (!shopsToUSe || !shopsToUSe.length) return <p>loading.......</p>
     else {
         return (
             <div className="lg:w-2/3 w-full grid grid-cols-1 gap-3 pt-3">

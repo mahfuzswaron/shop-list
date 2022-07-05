@@ -53,17 +53,17 @@ const addShop = (state, shop) => {
     const newId = `shop${parseInt(lastId.slice(4)) + 1}`
     const newShop = { id: newId, ...shop };
     const preShops = state.shops;
-    const newShops = [...preShops, newShop]
-    return { shops: newShops }
+    const newShops = [newShop, ...preShops]
+    return { shops: newShops, filteredShops: newShops }
 }
 const editShop = (state, shop) => {
     const updatedShops = state.shops.filter(s => s.id !== shop.id);
     updatedShops.unshift(shop);
-    return { shops: updatedShops }
+    return { shops: updatedShops, filteredShops: updatedShops }
 }
 const deleteShop = (state, shop) => {
     const updatedShops = state.shops.filter(s => s.id !== shop.id);
-    return { shops: updatedShops }
+    return { shops: updatedShops, filteredShops: updatedShops }
 }
 
 const filterShops = (state, query) => {
