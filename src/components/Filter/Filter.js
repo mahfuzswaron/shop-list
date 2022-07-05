@@ -21,7 +21,7 @@ const Filter = () => {
     }
 
     return (
-        <aside className='lg:w-1/3 w-full bg-blue-100 bg-opacity-25 mt-3 mr-5 p-3 rounded-lg'>
+        <aside className='lg:w-1/3 w-full bg-blue-100 bg-opacity-25 mt-3 mr-5 p-3 rounded-lg animate__animated animate__fadeInLeft'>
             <h3>Filter</h3>
             <Form onChange={handleOnChange}>
                 <Form.Group className="mb-3" controlId="category">

@@ -9,7 +9,7 @@ const Home = () => {
     return (
         <div>
             <Banner />
-            <div className='flex justify-end p-5'>
+            <div className='flex justify-end p-5 animate__animated animate__fadeInRight'>
                 <Button variant="primary" onClick={() => setAddShopModalShow(true)}>
                     Add Shop
                 </Button>

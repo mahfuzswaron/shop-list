@@ -26,7 +26,7 @@ const Shop = ({ shop, setEditShopModalShow }) => {
     const isOpen = () => (Date.parse(shop.openingDate) < new Date()) && (new Date() < Date.parse(shop.closingDate))
 
     return (
-        <div className='bg-[#FAFAFA] sm:px-2 lg:px-5 sm:py-1  lg:py-3 rounded-tr-3xl relative '>
+        <div className='bg-[#FAFAFA] sm:px-2 lg:px-5 sm:py-1  lg:py-3 rounded-tr-3xl relative animate__animated animate__fadeInRight'>
             <h3 className='lg:text-3xl text-xl uppercase'>{name}</h3>
             <div className='flex lg:flex-row lg:space-x-8 flex-col space-x-0'>
                 <p className='mb-1'>{tagIcon} {category}</p>
