@@ -1,4 +1,4 @@
-# SHOP LIST
+# SHOP ARENA
 
 Shop List is a shop list management web application. You can add, edit and delete a shop and filter the shops by category, location, and availability.
 
