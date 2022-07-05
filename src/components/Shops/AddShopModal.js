@@ -11,7 +11,7 @@ const AddShopModal = (props) => {
     const { setAddShopModalShow } = props;
     const dispatch = useDispatch();
     const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date(new Date().setFullYear(new Date().getFullYear() + 1)));
 
     const handleSubmitForm = (event) => {
         event.preventDefault();

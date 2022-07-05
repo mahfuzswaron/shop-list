@@ -68,7 +68,8 @@ const deleteShop = (state, shop) => {
 
 const filterShops = (state, query) => {
     const shopAvailablity = (od, cd) => {
-        if ((Date.parse(od) < new Date()) && (new Date() < Date.parse(cd))) {
+        if ((new Date() >= Date.parse(od)) || (new Date() <= Date.parse(cd))) {
+            // console.log(new Date(), Date.parse(od), Date.parse(cd))
             return 'open'
         }
         else {
