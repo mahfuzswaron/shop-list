@@ -65,11 +65,12 @@ const deleteShop = (state, shop) => {
     const updatedShops = state.shops.filter(s => s.id !== shop.id);
     return { shops: updatedShops, filteredShops: updatedShops }
 }
+// const isOpen = () => (Date.parse(shop.openingDate) < new Date()) && (new Date() < Date.parse(shop.closingDate));
 
 const filterShops = (state, query) => {
     const shopAvailablity = (od, cd) => {
-        if ((new Date() >= Date.parse(od)) || (new Date() <= Date.parse(cd))) {
-            // console.log(new Date(), Date.parse(od), Date.parse(cd))
+        if ((Date.parse(od) < new Date()) && (new Date() < Date.parse(cd))) {
+
             return 'open'
         }
         else {
