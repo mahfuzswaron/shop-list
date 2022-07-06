@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import EditShopModal from './EditShopModal';
+import NoData from './NoData';
 import Shop from './Shop';
 
 const Shops = () => {
@@ -12,7 +13,7 @@ const Shops = () => {
     if (!filteredShops) {
         shopsToUSe = shops
     }
-    if (!shopsToUSe || !shopsToUSe.length) return <p>loading.......</p>
+    if (!shopsToUSe || !shopsToUSe.length) return <NoData />
     else {
         return (
             <div className="lg:w-2/3 w-full grid grid-cols-1 gap-3 pt-3">
