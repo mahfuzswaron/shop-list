@@ -20,7 +20,7 @@ const dateIcon = <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4  inl
 
 
 const Shop = ({ shop, setEditShopModalShow }) => {
-    const { name, category, id, area, openingDate, closingDate } = shop;
+    const { name, category, area, openingDate, closingDate } = shop;
     const dispatch = useDispatch();
 
     const isOpen = () => (Date.parse(shop.openingDate) < new Date()) && (new Date() < Date.parse(shop.closingDate))
@@ -32,8 +32,7 @@ const Shop = ({ shop, setEditShopModalShow }) => {
                 <p className='mb-1'>{tagIcon} {category}</p>
                 <p className='mb-1'>{locationIcon} {area}</p>
             </div>
-            {/* <p>{clockIcon} {`${opening} - ${closing}`} </p> */}
-            <p>{dateIcon} {openingDate} - {closingDate} {isOpen() ? <span className="text-success">(open)</span> : <span className="text-danger">(closed)</span>} </p>
+            <p>{dateIcon} {openingDate} - {closingDate} {isOpen() ? <span className="bg-green-200 text-green-500 text-center text-xs font-medium px-2 py-1 lg:mx-3 my-2 lg:my-0 lg:inline block w-20 rounded-full ">OPEN</span> : <span className="bg-red-200 text-red-500 text-center text-xs font-medium px-2 py-1 lg:mx-3 my-2 lg:my-0 lg:inline block w-24 rounded-full">CLOSED</span>} </p>
             <button className='btn btn-primary '>
                 GALLERY
             </button>
