@@ -8,8 +8,8 @@ const EditShopModal = (props) => {
     const categories = ["Grocery", "Butcher", "Baker", "Chemist", "Stationery shop"];
     const areas = ["Thane", "Pune", "Mumbai Suburban", "Nashik", "Nagpur", "Ahmednagar", "Solapur"];
     const shop = useSelector((state) => state.selectedShop.state);
-    const [startDate, setStartDate] = useState(new Date(shop?.openingDate));
-    const [endDate, setEndDate] = useState(new Date(shop?.closingDate));
+    const [startDate, setStartDate] = useState(new Date(Date.parse(shop?.openingDate)));
+    const [endDate, setEndDate] = useState(new Date(Date.parse(shop?.closingDate)));
     const { setEditShopModalShow } = props;
     const dispatch = useDispatch();
     if (!shop) return
